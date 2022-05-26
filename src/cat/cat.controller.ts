@@ -10,7 +10,8 @@ export class CatController {
   @Get()
   async index() {
     await this.lazyInit();
-    return this.catService.run();
+    const res = this.catService.run();
+    return res;
   }
 
   async lazyInit() {
