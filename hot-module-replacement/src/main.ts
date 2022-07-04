@@ -3,7 +3,7 @@ import { AppModule } from './app.module';
 
 declare const module: any;
 
-console.log(3)
+console.log('new');
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
