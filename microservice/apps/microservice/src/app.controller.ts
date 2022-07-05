@@ -7,6 +7,7 @@ import {
   ClientProxy,
 } from '@nestjs/microservices';
 import { Logger } from '@nestjs/common';
+import { Observable } from 'rxjs';
 
 @Controller()
 export class AppController {
@@ -30,9 +31,9 @@ export class AppController {
   }
 
   @Post('add')
-  accumulate(@Body() body): number {
+  accumulate(@Body() body): Observable<number> {
     this.logger.log(body);
-    const result = this.client.send<number, number[]>('add', body.data) as any;
+    const result = this.client.send<number, number[]>('add', body.data);
     return result;
   }
 }
