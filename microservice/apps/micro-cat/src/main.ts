@@ -1,6 +1,6 @@
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-import { Transport } from '@nestjs/microservices';
+import { ClientOptions, Transport } from '@nestjs/microservices';
 import { MicroCatModule } from './micro-cat.module';
 
 // async function bootstrap() {
@@ -11,11 +11,22 @@ import { MicroCatModule } from './micro-cat.module';
 
 const logger = new Logger('Main');
 
-const microserviceOptions = {
-  transport: Transport.TCP,
+// Normal TCP
+// const microserviceOptions = {
+//   transport: Transport.TCP,
+//   options: {
+//     host: '127.0.0.1',
+//     port: 9001,
+//     retryAttempts: 5,
+//     retryDelay: 3000,
+//   },
+// };
+
+// Redis as message broker
+const microserviceOptions: ClientOptions = {
+  transport: Transport.REDIS,
   options: {
-    host: '127.0.0.1',
-    port: 9001,
+    url: 'redis://localhost:6379',
     retryAttempts: 5,
     retryDelay: 3000,
   },

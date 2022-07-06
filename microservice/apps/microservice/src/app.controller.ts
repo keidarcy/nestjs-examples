@@ -9,11 +9,21 @@ import {
 import { Logger } from '@nestjs/common';
 import { Observable } from 'rxjs';
 
+// const microserviceOptions: ClientOptions = {
+//   transport: Transport.TCP,
+//   options: {
+//     host: '127.0.0.1',
+//     port: 9001,
+//   },
+// };
+
+// Redis as message broker
 const microserviceOptions: ClientOptions = {
-  transport: Transport.TCP,
+  transport: Transport.REDIS,
   options: {
-    host: '127.0.0.1',
-    port: 9001,
+    url: 'redis://localhost:6379',
+    retryAttempts: 5,
+    retryDelay: 3000,
   },
 };
 
