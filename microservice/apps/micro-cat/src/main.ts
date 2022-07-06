@@ -15,7 +15,7 @@ const microserviceOptions = {
   transport: Transport.TCP,
   options: {
     host: '127.0.0.1',
-    port: 8877,
+    port: 9001,
     retryAttempts: 5,
     retryDelay: 3000,
   },
