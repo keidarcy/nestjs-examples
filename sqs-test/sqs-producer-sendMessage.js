@@ -6,17 +6,17 @@ const producer = Producer.create({
   region: process.env.AWS_REGION,
 });
 
-async function main() {
-  await producer.send(['msg1', 'msg2']);
+async function normalQueue() {
+ const result1 = await producer.send(['msg1', 'msg2']);
 
-  await producer.send([
+  const result2 = await producer.send([
     {
       id: 'id1',
       body: 'Hello world',
     },
   ]);
 
-  await producer.send([
+  const result3 = await producer.send([
     {
       id: 'id1',
       body: 'Hello world with two string attributes: attr1 and attr2',
@@ -31,6 +31,53 @@ async function main() {
       delaySeconds: 5,
     },
   ]);
+
+    console.log({
+        result1,
+        result2,
+        result3
+    })
 }
 
-main();
+// normalQueue();
+
+async function fifoQueue() {
+ // const result1 = await producer.send(['msg1', 'msg2']);
+
+  const result2 = await producer.send([
+    {
+    id: 'good-id',
+      body: 'Hello world',
+      groupId: 'group1234',
+  //deduplicationId: 'abcdef123456'
+    },
+  ]);
+
+  // const result3 = await producer.send([
+  //   {
+  //     id: 'id1',
+  //     body: 'Hello world with two string attributes: attr1 and attr2',
+  //     messageAttributes: {
+  //       attr1: { DataType: 'String', StringValue: 'stringValue' },
+  //       attr2: { DataType: 'Binary', BinaryValue: new Buffer('binaryValue') },
+  //     },
+  //                   groupId: 'group1234',
+  // deduplicationId: 'abcdef123456'
+
+  //   },
+  //   {
+  //     id: 'id2',
+  //     body: 'Hello world delayed by 5 seconds',
+  //     // delaySeconds: 5,
+  //                   groupId: 'group1234',
+  // deduplicationId: 'abcdef123456'
+  //   },
+  // ]);
+
+    console.log({
+        // result1,
+        result2,
+        // result3
+    })
+}
+fifoQueue()
