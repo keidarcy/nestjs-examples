@@ -1,5 +1,7 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param, Post, Body } from '@nestjs/common';
 import { AppService } from './app.service';
+import * as Prisma from 'prisma';
+import { User } from '@prisma/client';
 
 type GetUserInput = {
   readonly id: string;
