@@ -1,7 +1,6 @@
 import { Controller, Get, Param, Post, Body } from '@nestjs/common';
 import { AppService } from './app.service';
-import * as Prisma from 'prisma';
-import { User } from '@prisma/client';
+import { User, Prisma } from '@prisma/client';
 
 type GetUserInput = {
   readonly id: string;
@@ -20,7 +19,8 @@ export class AppController {
 
   @Get('/user/:id')
   async getUser(@Param() params: GetUserInput): Promise<User> {
-    return await this.appService.findById(params);
+    const user = await this.appService.findById(params);
+    return user;
   }
 
   @Post('/user')

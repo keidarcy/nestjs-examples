@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  mongo:
+    container_name: mongo
+    image: mongo:4.4
+    ## Cannot create namespace xx.xx in multi-document transaction.
+    ## mongo 4.2 does not support create document before create collection.
+    ## mongo 4.2 needs manualy create collection.
+    # image: mongo:4.2.14
+    command: --replSet rs0
+    ports:
+      - '27017:27017'
+    volumes:
+      - ./data/mongo:/data/db
+
+# docker-compose exec mongo mongo --eval "rs.initiate({_id: 'rs0', members: [{_id: 0, host: 'localhost:27017'}]});"
