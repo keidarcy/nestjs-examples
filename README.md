@@ -9,3 +9,4 @@
 - [mongoose-and-reactjs](https://github.com/keidarcy/nestjs-examples/tree/mongoose-and-reactjs)
 - [prisma-mongodb](https://github.com/keidarcy/nestjs-examples/tree/prisma-mongodb)
 - [sqs-test](https://github.com/keidarcy/nestjs-examples/tree/sqs-test)
+- [redis-cache](https://github.com/keidarcy/nestjs-examples/tree/redis-cache)
